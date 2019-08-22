@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="enter">
+
+
+<div class="boton_redirect">&larr;
+  <%= link_to 'Volver a Lista de tablones', utility_index_path%>
+</div><br>
+<%= form_with(model: utilities_type, local: true) do |form| %>
+  <% if utilities_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(utilities_type.errors.count, "error") %> prohibited this utilities_type from being saved:</h2>
+
+      <ul>
+      <% utilities_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Descripción %>
+    <%= form.text_field :description , class:"form-control"%>
+  </div>
+<br>
+  <div class="actions">
+    <%= form.submit "Crear Tipo de Utilidad", class:"form-control btn btn-primary"%>
+  </div>
+<% end %>
+</div>
+</div>

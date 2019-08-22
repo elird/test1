@@ -1,0 +1,48 @@
+<div class="container-fluid">
+<div class="enter">
+
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de asistencia', hours_history_index_path%>
+</div><br>
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de personal', employee_index_path%>
+</div><br>
+<ul>
+<%
+@hours_history.errors.full_messages.each do |m|
+%>
+<li> <%= m %></li>
+<% end %>
+</ul>
+<div class="col-md-6 .col-md-offset-3">
+	<p>
+		<% if params[:employee]==nil%>
+			<%= f.label "Personal" %> </br>
+			<%= f.collection_select(:employee_id, Employee.all, :id , :name, :disabled => true )  %>
+		<% else%>
+			<%= f.label "Personal" %> </br>
+			<%= @employee.lastname%>, <%= @employee.name%>
+			<%= f.hidden_field :employee_id %>
+		<% end%>
+
+	</p>
+<!--p>
+<%= f.label "Fecha" %> </br>
+<%= f.date_field :created_at %>
+</p-->
+<p>
+<%= f.label "Hora de entrada" %> </br>
+<%= f.time_field :entry_time %>
+</p>
+<p>
+<%= f.label "Hora de salida" %> </br>
+<%= f.time_field :departure_time %>
+</p>
+
+
+<p>
+<%= f.submit "Enviar" , class:"btn btn-primary"%>
+</p>
+</div>
+</div>
+</div>

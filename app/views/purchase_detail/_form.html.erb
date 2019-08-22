@@ -1,0 +1,57 @@
+<div class="container-fluid">
+	<div class="enter">
+
+
+<div class="boton_redirect">&larr;
+	<%= link_to 'Es todo, volver a la Compra', purchase_show_path(params[:purchase])%>
+</div><br>
+<div class="boton_redirect">&larr;
+	<%= link_to 'Nuevo Tablón', u_purchase_detail_new_path%>
+</div><br>
+<ul>
+<%
+@purchase_detail.errors.full_messages.each do |m|
+%>
+<li> <%= m %></li>
+<% end %>
+</ul>
+<p>
+<%= f.label "ID Compra" %> </br>
+<%= f.collection_select :purchase_id, Purchase.all, :id, :id %>
+</p>
+
+<div class="boton_redirect">&larr;
+	<%= link_to 'Nuevo Material', material_new_path%>
+</div><br>
+<p>
+<%= f.label "Material" %> </br>
+
+<%= f.collection_select :material_id, Material.all, :id, :description %>
+</p>
+<p>
+<%= f.label "Precio Neto" %> </br>
+<%= f.text_field :net_price , class:"form-control"%>
+</p>
+<p>
+<%= f.label "IVA" %> </br>
+<%= f.select :iva,options_for_select([[5],[10]]) %>
+</p>
+<!-- hacer un select al iva? ya que hay solo dos opciones
+<%= select_tag(:IVA, options_for_select([[5],[10]])) %> -->
+
+
+
+<p>
+<%= f.label "Cantidad" %> </br>
+<%= f.text_field :quantity %>
+</p>
+<!--p>
+<%= f.label "Subtotal" %> </br>
+<%= f.text_field :subtotal , class:"form-control"%>
+</p-->
+
+<p>
+<%= f.submit "Enviar", class:"form-control btn btn-primary" %>
+</p>
+</div>
+</div>

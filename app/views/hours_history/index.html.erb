@@ -1,0 +1,44 @@
+<div class="container-fluid">
+
+	<h1  align="center">Historial de Horas</h1>
+	<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de personal', employee_index_path%>
+</div><br>
+<div class="boton_redirect">
+	<%= link_to 'Ir a Salarios', salary_index_path%> &rarr;
+</div><br>
+<div class="boton_redirect">
+	<%= link_to 'Ir a pago al personal', employee_payment_index_path%> &rarr;
+</div><br>
+<table class="table table-hover">
+	  <thead class="thead-dark">
+	<tr><TH>ID</TH>
+		<TH>Fecha</TH>
+		<TH>Hora de entrada</TH>
+		<TH>Hora de salida</TH>
+		<TH>Horas trabajadas</TH>
+		<TH>Horas extras trabajadas</TH>
+		<TH>Personal</TH>
+
+		<TH colspan="2"><%= link_to 'Nuevo', hours_history_new_path, class:"btn btn-success" %></TH></tr>
+</thead>
+	<tbody>
+	<% @hours_histories.each do |f| %>
+
+	<tr><TD><%= f.id %></TD>
+		<TD><%= f.created_at.strftime("%Y/%m/%d") %></TD>
+		<TD><%= f.entry_time.strftime("%T") %></TD>
+		<TD><%= f.departure_time.strftime("%T") %></TD>
+		<TD><%= f.total_hours%></TD>
+		<TD><%= f.extra_hours%></TD>
+		<TD><%= f.employee.lastname %>, <%= f.employee.name %> </TD>
+
+		<TD><%= link_to 'Editar', hours_history_edit_path(f['id']) , class: "btn btn-link"%></TD><TD>
+<%= link_to 'Borrar', { :action => :destroy, :id => f.id }, :method => :delete, :data => { :confirm => 'Desea borrar el registro?' }, class:"btn btn-danger" %>
+		</TD>
+	</tr>
+    <% end %>
+    </tbody>
+
+</table>
+</div>

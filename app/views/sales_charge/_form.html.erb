@@ -1,0 +1,30 @@
+<div class="container-fluid">
+	<div class="enter">
+
+<div class="boton_redirect">&larr;
+	<%= link_to 'Es todo, volver a los detalles de la venta', sale_show_path(params[:sale])%>
+</div><br>
+<ul>
+<%
+@sales_charge.errors.full_messages.each do |m|
+%>
+<li> <%= m %></li>
+<% end %>
+
+</ul>
+<p>
+<%= f.label "Venta" %> </br>
+<%= f.collection_select :sale_id, Sale.all, :id, :id %>
+
+</p>
+<p>
+<%= f.label "Importe" %> </br>
+<%= f.number_field :amount, class:"form-control"%>
+</p>
+
+<p>
+<%= f.submit "Enviar" , class:"form-control btn btn-primary"%>
+</p>
+
+</div>
+</div>

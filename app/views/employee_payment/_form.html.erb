@@ -1,0 +1,34 @@
+<div class="container-fluid">
+	<div class="enter">
+
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de pago al personal', employee_payment_index_path%>
+</div><br>
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de salarios', salary_index_path%>
+</div><br>
+<ul>
+<%
+@employee_payment.errors.full_messages.each do |m|
+%>
+<li> <%= m %></li>
+<% end %>
+</ul>
+
+<p>
+
+<%= f.label :Codigo_de_salario %> </br>
+<%= f.collection_select(:salary_id, Salary.all, :id , :employee_id)  %>
+<p>
+<%= f.label :Codigo_del_personal %> </br>
+<%= f.collection_select(:employee_id, Employee.all, :id , :name)  %>
+</p>
+<p>
+<%= f.label :Monto%> </br>
+<%= f.text_field :amount %>
+</p>
+<p>
+<%= f.submit "Enviar" , class:"btn btn-primary form-control"%>
+</p>
+</div>
+</div>

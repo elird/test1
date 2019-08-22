@@ -1,0 +1,39 @@
+	<h1 align="center">Proveedores</h1>
+	<div class="boton_redirect">
+	<%= link_to 'Ir a Lista de Compras', purchase_index_path%> &rarr;
+</div><br>
+<div class="boton_redirect">
+	<%= link_to 'Ir a Materiales', material_index_path%> &rarr;
+</div><br>
+<div class="boton_redirect">
+	<%= link_to 'Ir a Tablones', utility_index_path%> &rarr;
+</div><br>
+<table class="table table-hover">
+	  <thead class="thead-dark">
+	<tr><TH>ID</TH>
+		<TH>Nombre</TH>
+		<TH>Dirección</TH>
+		<TH>Teléfono</TH>
+		<TH>Documento - RUC</TH>
+
+
+		<TH colspan="4"><%= link_to 'Nuevo', provider_new_path , class:"btn btn-success"%></TH></tr>
+</thead>
+	<tbody>
+	<% @providers.each do |f| %>
+
+	<tr><TD><%= f.id %></TD>
+		<TD><%= f.name %></TD>
+		<TD><%= f.address %></TD>
+		<TD><%= f.telephone %></TD>
+		<TD><%= f.document %> - <%= f.ruc%></TD>
+
+		<TD><%= link_to 'Cargar una compra de este proveedor', purchase_new_prid_add_path(f['id']), class:"btn btn-link" %></TD>
+		<TD><%= link_to 'Editar', provider_edit_path(f['id']), class: "btn btn-link" %></TD><TD>
+<%= link_to 'Borrar', { :action => :destroy, :id => f.id }, :method => :delete, :data => { :confirm => 'Desea borrar el registro?' }, class: "btn btn-danger" %>
+		</TD>
+	</tr>
+    <% end %>
+    </tbody>
+
+</table>

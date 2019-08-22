@@ -1,0 +1,45 @@
+<div class="container-fluid">
+	<div class="enter">
+
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a Lista de Materiales', material_index_path%>
+</div><br>
+<ul>
+<%
+@material.errors.full_messages.each do |m|
+%>
+<li> <%= m %></li>
+<% end %>
+</ul>
+
+
+<p>
+<%= f.label :Tipo_de_Material %> </br>
+<%= f.collection_select(:materials_type_id, MaterialsType.all, :id , :description)  %>
+<div class="boton_redirect">&larr;
+	<%= link_to 'Nuevo tipo de material', new_materials_type_path%>
+</div><br>
+</p>
+
+
+<p>
+<%= f.label "Unidad de medida" %>&nbsp&nbsp&nbsp&nbsp&nbsp
+<%= f.select :measure_unit,options_for_select([["GRAMOS"],["KILOGRAMOS"],["LITROS"],["UNIDAD"]]), class: "form-control" %> </br></p>
+<p>
+<%= f.label :Descripción %> </br>
+<%= f.text_field :description , class:"form-control"%>
+</p>
+<p>
+<%= f.label :Cantidad %> </br>
+<%= f.number_field :quantity, :class => 'text_field', :step => 1  %>
+</p>
+<p>
+<%= f.label :Costo %> </br>
+<%= f.number_field :cost , :class => 'text_field' %>
+</p>
+
+<p>
+<%= f.submit "Enviar", class:"form-control btn btn-primary" %>
+</p>
+</div>
+</div>

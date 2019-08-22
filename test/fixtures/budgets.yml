@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  observation: MyText
+  quantity: 1
+  unit_price: 1.5
+  subtotal: 1.5
+  furniture: one
+  budget_for_order: one
+
+two:
+  observation: MyText
+  quantity: 1
+  unit_price: 1.5
+  subtotal: 1.5
+  furniture: two
+  budget_for_order: two

@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="enter">
+
+
+<script>
+    $('#list-employees').selectize({
+    create: true,
+    sortField: 'text'
+});
+  </script>
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de salarios', salary_index_path%>
+</div><br>
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de personal', employee_index_path%>
+</div><br>
+
+<ul>
+<%
+@salary.errors.full_messages.each do |m|
+%>
+<li> <%= m %></li>
+<% end %>
+</ul>
+<p>
+		<% if params[:employee]==nil%>
+			<%= f.label "Personal" %> </br>
+			<%= f.collection_select :employee_id, Employee.order(:name), :id, :name, {id: 'list-employees'} %>
+		<% else%>
+			<%= f.label "Personal" %> </br>
+			<%= @employee.lastname%>, <%= @employee.name%>
+			<%= f.hidden_field :employee_id %>
+		<% end%>
+
+	</p>
+<p>
+
+</p>
+<p>
+<%= f.label "Bonificación por hora" %> </br>
+<%= f.text_field :charge_for_hours %>
+</p>
+<p>
+<%= f.submit "Enviar" , class: "form-control btn btn-primary"%>
+</p>
+</div>
+</div>

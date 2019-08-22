@@ -1,0 +1,39 @@
+<div class="container-fluid">
+	<h1  align="center">Muebles</h1>
+	<div class="boton_redirect">
+  <%= link_to 'Ir a la lista de presupuestos', budget_for_orders_path%> &rarr;
+</div><br>
+<div class="boton_redirect">
+  <%= link_to 'Ir a Pedidos', order_index_path%> &rarr;
+</div><br>
+<table class="table table-hover">
+	  <thead class="thead-light">
+	<tr><TH>ID</TH>
+		<TH>Descripción</TH>
+		<TH>Costo</TH>
+		<TH>Ganancia</TH>
+		<TH>IVA</TH>
+		<TH>Precio de venta</TH>
+
+
+		<TH colspan="3"><%= link_to 'Nuevo', furniture_new_path , class: "btn btn-success"%></TH></tr>
+</thead>
+	<tbody>
+	<% @furnitures.each do |f| %>
+
+	<tr><TD><%= f.id %></TD>
+		<TD><%= f.description %></TD>
+		<TD><%= f.cost %> Gs.</TD>
+		<TD><%= f.profit %> Gs.</TD>
+		<TD><%= f.iva %>%</TD>
+		<TD><%= f.price %> Gs.</TD>
+		<TD><%= link_to 'Detalles', furniture_show_path(f['id']) , class:"btn btn-link" %></TD>
+		<TD><%= link_to 'Editar', furniture_edit_path(f['id']) , class:"btn btn-link"  %></TD><TD>
+
+<%= link_to 'Borrar', { :action => :destroy, :id => f.id }, :method => :delete, :data => { :confirm => 'Desea borrar el registro?' } , class:"btn btn-danger"  %>
+		</TD>
+	</tr>
+    <% end %>
+    </tbody>
+</table>
+</div>

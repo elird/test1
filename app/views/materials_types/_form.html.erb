@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="enter">
+
+
+<div class="boton_redirect">&larr;
+  <%= link_to 'Volver a la lista de materiales', material_index_path%>
+</div><br>
+<%= form_with(model: materials_type, local: true) do |form| %>
+  <% if materials_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(materials_type.errors.count, "error") %> prohibited this materials_type from being saved:</h2>
+
+      <ul>
+      <% materials_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Descripción %>
+    <%= form.text_field :description, class:"form-control" %>
+  </div>
+<br>
+  <div class="actions">
+    <%= form.submit "Crear tipo de material", class:"form-control btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+</div>

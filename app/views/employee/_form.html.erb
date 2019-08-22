@@ -1,0 +1,53 @@
+<div class="container-fluid">
+	<div class="enter">
+
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de personal', employee_index_path%>
+</div><br>
+<ul>
+<%
+@employee.errors.full_messages.each do |m|
+%>
+<li> <%= m %></li>
+<% end %>
+</ul>
+
+<p>
+<%= f.label :Nombres%> </br>
+<%= f.text_field :name, class:"form-control" %>
+</p>
+<p>
+<%= f.label :Apellidos %> </br>
+<%= f.text_field :lastname , class:"form-control" %>
+</p>
+<p>
+<%= f.label :Dirección %> </br>
+<%= f.text_field :address, class:"form-control"  %>
+</p>
+<p>
+<%= f.label :Teléfono %> </br>
+<%= f.text_field :telephone, class:"form-control"  %>
+</p>
+<p>
+<%= f.label :Documento %> </br>
+<%= f.text_field :document, class:"form-control"  %>
+</p>
+<p>
+<%= f.label :Especialidad %> </br>
+<%= f.text_field :speciality , class:"form-control" %>
+</p>
+<p>
+  <%= f.label :Estado %>&nbsp&nbsp&nbsp&nbsp&nbsp
+  <%= f.check_box :status, {}, "ACTIVO", "INACTIVO"%>&nbsp&nbspACTIVO </br>
+<p>
+
+
+</p>
+
+<p>
+<%= f.submit "Enviar", class:"form-control btn btn-primary"  %>
+</p>
+
+</div>
+
+</div>

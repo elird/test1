@@ -1,0 +1,82 @@
+<div class="container-fluid">
+
+<p id="notice"><%= notice %></p>
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a Lista de Compras', purchase_index_path%>
+</div><br>
+<div class="boton_redirect">&larr;
+	<%= link_to 'Editar Compra', purchase_edit_path(@purchase.id)%>
+</div><br>
+<div class="enter">
+
+<p>
+	<strong>Codigo de la compra</strong>
+  <%= @purchase.id %>
+  <strong>Proveedor:</strong>
+  <%= @purchase.provider.name %>
+  <strong>Fecha:</strong>
+  <%= @purchase.purchase_date %>
+  <strong>Total:</strong>
+  <%= @purchase.total %> Gs.
+  <strong>Importe:</strong>
+  <%= @purchase.amount %> Gs.
+  <strong>Saldo:</strong>
+  <%= @purchase.balance %> Gs.
+</p>
+</div>
+
+<table class="table table-hover">
+	  <thead class="thead-dark">
+	<tr><TH>ID</TH>
+		<TH>Material</TH>
+		<TH>Precio Neto</TH>
+		<TH>IVA</TH>
+		<TH>Cantidad</TH>
+		<TH>Subtotal</TH>
+
+
+		<TH colspan="2"><%= link_to 'Nuevo', purchase_detail_new_add_path(@purchase.id), class:"btn btn-success" %></TH></tr>
+</thead>
+	<tbody>
+	<% @purchase_details.each do |f| %>
+
+	<tr><TD><%= f.id %></TD>
+		<TD><%= f.material.description %></TD>
+		<TD><%= f.net_price %> Gs. </TD>
+		<TD><%= f.iva%>%</TD>
+		<TD><%= f.quantity %> </TD>
+		<TD><%= f.subtotal %> Gs.</TD>
+		<TD><%= link_to 'Editar', purchase_detail_edit_p_path(f['purchase_id'], f['id']), class: "btn btn-link"%></TD><TD>
+<%= link_to 'Borrar', purchase_detail_destroy_path(f['id']), :method => :delete, :data => { :confirm => 'Desea borrar el registro?' }, class:"btn btn-danger" %>
+		</TD>
+	</tr>
+    <% end %>
+    </tbody>
+
+</table>
+<strong>Tablones</strong><br>
+<p>Obs: Para los tablones el iva va incluido</p>
+<table class="table table-hover">
+	  <thead class="thead-light">
+	<tr><TH>ID</TH><TH>Tipo</TH><TH>Cantidad</TH><TH>Ancho</TH><TH>Alto</TH><TH>Espesor</TH><TH>Costo</TH><TH>Subtotal</TH><TH>Observación</TH><TH colspan="2"><%= link_to 'Nuevo', u_purchase_detail_new_add_path(@purchase.id), class:"btn btn-success" %></TH></tr>
+</thead>
+
+	<tbody>
+	<% @u_purchase_details.each do |f| %>
+	<tr><TD><%= f.id %></TD>
+		<TD><%= f.utilities_type.description %></TD>
+		<TD><%= f.quantity %></TD>
+		<TD><%= f.width %></TD>
+		<TD><%= f.high %></TD>
+		<TD><%= f.thickness %></TD>
+		<TD><%= f.cost %> Gs.</TD>
+		<TD><%= f.subtotal %> Gs.</TD>
+		<TD><%= f.observation %></TD>
+		<TD><%= link_to 'Editar', u_purchase_detail_edit_p_path(f['purchase_id'], f['id']), class:"btn btn-link" %></TD><TD>
+
+<%= link_to 'Borrar', u_purchase_detail_destroy_path(f['id']), :method => :delete, :data => { :confirm => 'Desea borrar el registro?' }, class:"btn btn-danger" %>
+	</tr>
+    <% end %>
+    </tbody>
+</table>
+</div>

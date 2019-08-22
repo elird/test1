@@ -1,0 +1,47 @@
+<div class="enter">
+
+<div class="container-fluid">
+
+<div class="boton_redirect">&larr;
+	<%= link_to 'Volver a la lista de ventas', sale_index_path%>
+
+</div><br>
+<ul>
+<%
+@sale.errors.full_messages.each do |m|
+%>
+<li> <%= m %></li>
+<% end %>
+</ul>
+
+
+
+<p>
+<%= f.label "Importe de entrega" %> </br>
+<%= f.number_field :amount, class: "form-control"%>
+</p>
+<p>
+<%= f.label "Estado" %> </br>
+<%= f.text_field :status, class: "form-control" %>
+</p>
+<!--p>
+<%= f.label "Saldo" %> </br>
+<%= f.text_field :balance, class: "form-control" %>
+</p-->
+<p>
+<%= f.label "Pedido" %> </br>
+<%= f.collection_select :order_id, Order.all, :id, :id , class: "form-control"%>
+</p>
+<!--p>
+<%= f.label "cliente" %> </br>
+<%= f.text_field :customer_id , class: "form-control"%>
+</p-->
+<!--p>
+<%= f.label "Total" %> </br>
+<%= f.text_field :total , class: "form-control"%>
+</p-->
+<p>
+<%= f.submit "Enviar", class: "btn btn-primary form-control" %>
+</p>
+</div>
+</div>
